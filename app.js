@@ -4,13 +4,15 @@ const app = Vue.createApp({
       counter: 0,
     };
   },
-  methods: {
-    addFive() {
-      this.counter = this.counter + 5;
+  watch: {
+    result() {
+      var that = this;
+      setTimeout(() => {
+        that.counter = 0;
+      }, 5000);
     },
-    addOne() {
-      this.counter = this.counter + 1;
-    },
+  },
+  computed: {
     result() {
       if (this.counter < 37) {
         return "Not there yet";
@@ -19,6 +21,11 @@ const app = Vue.createApp({
       } else {
         return "Too much!";
       }
+    },
+  },
+  methods: {
+    addNumber(num) {
+      this.counter = this.counter + num;
     },
   },
 });
